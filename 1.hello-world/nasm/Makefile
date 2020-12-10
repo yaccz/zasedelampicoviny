@@ -1,12 +1,16 @@
-all:
+.PHONY: all
+all: clean main check
+
+main:
 
 	nasm -g -f elf64 -o main.o main.asm
 	ld -o main main.o
 
 clean:
 
-	rm main main.o
+	$(RM) main main.o
 
+.PHONY: check
 check:
 
-	./main
+	EXE=$(shell pwd)/main cram ../test/test.t
