@@ -8,13 +8,19 @@
 ; data section - static data baked into the binary
 section .data
 
-; define the hello world string constant
-; using backquotes instead of double quotes to support escape sequences
+    ; define the hello world string constant
+    ; using backquotes instead of double quotes to support escape sequences
     HELLO   db `Hello World\n`
+
+    ; also possible as:
+    ; HELLO   db "Hello World", 0xa
+
+    ; define hello length using equ pseudo-instruction
+    HELLO_LEN equ $-HELLO
 
 ; text section - code definitions
 section .text
-; "main" "function". Must be declared for linker.
+    ; "main" "function". Must be declared for linker.
     global _start
 
 _start:
